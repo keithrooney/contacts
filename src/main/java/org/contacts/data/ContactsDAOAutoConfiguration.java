@@ -7,7 +7,7 @@ import org.contacts.data.filesystem.LocalFileSystemContactsDAO;
 import org.contacts.data.mongodb.MongoContactsDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -48,7 +48,7 @@ public class ContactsDAOAutoConfiguration {
 	}
 	
 	@Configuration
-	@ConditionalOnBean(ContactsDAO.class)
+	@ConditionalOnMissingBean(ContactsDAO.class)
 	@AutoConfigureAfter(MongoAutoConfiguration.class)
 	@ConditionalOnProperty(prefix="spring.data.filesystem", name="type", havingValue="local", matchIfMissing=true)
 	public static class JVMFileSystemAutoConfiguration {
