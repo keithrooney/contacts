@@ -1,4 +1,4 @@
-# Addresses
+# Contacts
 
 ## Goal
 
